@@ -12,8 +12,9 @@
         android:layout_marginRight="10dp">
         <TextView
             android:id="@+id/temperature_num"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:gravity="right"
             android:textColor="#fff"
             android:textSize="60sp"
             android:text="00"/>
@@ -31,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/temperature_num"
             android:layout_alignRight="@id/temperature_num"
+            android:gravity="right"
             android:textColor="#fff"
             android:textSize="20sp"
             android:text="天气"/>

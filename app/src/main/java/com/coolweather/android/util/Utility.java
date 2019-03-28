@@ -95,17 +95,7 @@ public class Utility {
         }
         return null;
     }
-    public static ForecastWeather handleForecastWeatherResponse(String response){
-        try{
-            JSONObject jsonObject = new JSONObject(response);
-            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather6");
-            String weatherContent = jsonArray.getJSONObject(0).toString();
-            return new Gson().fromJson(weatherContent,ForecastWeather.class);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return null;
-    }
+
     public static Suggestion handleSugWeatherResponse(String response){
         try{
             JSONObject jsonObject = new JSONObject(response);
