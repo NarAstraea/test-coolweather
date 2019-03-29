@@ -3,6 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="#8000">
+    <Button
+        android:id="@+id/change_menu_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/menu_btn"/>
     <TextView
         android:id="@+id/title_city"
         android:layout_width="wrap_content"
