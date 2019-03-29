@@ -125,7 +125,8 @@ public class WeatherActivity extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mWeatherId = getIntent().getStringExtra("weather_id");
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(WeatherActivity.this);
+                mWeatherId = prefs.getString("weatherId",null);
                 requestWeather(mWeatherId);
             }
         });
@@ -195,6 +196,7 @@ public class WeatherActivity extends AppCompatActivity {
             editor.putString("aqi",responseTexts.get(1));
             editor.putString("suggestion",responseTexts.get(2));
             editor.putString("updateTime",suggestion.update.updateTime);
+            editor.putString("weatherId",weather.basic.weatherId);
             editor.apply();
             runOnUiThread(new Runnable() {
                 @Override
