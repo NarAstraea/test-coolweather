@@ -4,7 +4,12 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+//
+// Database Suggestion
+// gson structure for saving internet get-request "life suggestion data"
+//
 public class Suggestion {
+    //data container
     public Basic basic;
     public List<LifeStyle> lifestyle;
     public String status;

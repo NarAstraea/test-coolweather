@@ -8,6 +8,9 @@ import android.os.Bundle;
 
 import com.coolweather.android.ui.activity.WeatherActivity;
 
+//
+//主要对缓存数据进行判断和直接读取
+//
 public class MainActivity extends AppCompatActivity {
 
     @Override

@@ -2,7 +2,13 @@ package com.coolweather.android.gson;
 
 import com.google.gson.annotations.SerializedName;
 
+//
+// Database Forecast
+// !!not using!!
+// for old version server requests
+//
 public class Forecast {
+    //data container
     @SerializedName("date")
     public String updateTimeForForecast;
 

@@ -40,8 +40,13 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
+//
+// Weather Message Page Activity
+// edited
+//
 public class WeatherActivity extends AppCompatActivity {
 
+    // layout and db objects and so on
     public ExDrawerLayout drawerLayout;
     private Button menuButton;
     public SwipeRefreshLayout swipeRefreshLayout;
@@ -91,10 +96,11 @@ public class WeatherActivity extends AppCompatActivity {
         menuButton = (Button)findViewById(R.id.change_menu_btn);
 
         //刷新当前城市天气
+        //update city weather currently
         swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
 
-
+        //保存当前页面元素内容至缓存用以下次直接载入无需联网
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String updateString = prefs.getString("updateTime",null);
         String weatherString = prefs.getString("weather",null);
@@ -140,7 +146,11 @@ public class WeatherActivity extends AppCompatActivity {
         });
     }
 
+    //
+    // 请求天气数据的方法主体
+    //
     public void requestWeather(final String weatherId){
+        //分别获取基本天气数据（温度 天气状况等）、AQI数据和生活建议数据
         final String weatherUrl = "https://free-api.heweather.net/s6/weather/now?location=" + weatherId + "&key=e6cd302b539c4482acff7b2b85994c73";
         final String weatherUrlForAQI = "https://free-api.heweather.net/s6/air/now?location=" + weatherId + "&key=e6cd302b539c4482acff7b2b85994c73";
         final String weatherUrlForSug = "https://free-api.heweather.net/s6/weather/lifestyle?location=" + weatherId + "&key=e6cd302b539c4482acff7b2b85994c73";
@@ -187,6 +197,7 @@ public class WeatherActivity extends AppCompatActivity {
                 }
             }
         });
+        //将获取到的数据存入预先准备的String容器中
         weather = Utility.handleWeatherResponse(responseTexts.get(0));
         aqi = Utility.handleAQIWeatherResponse(responseTexts.get(1));
         suggestion = Utility.handleSugWeatherResponse(responseTexts.get(2));
@@ -198,6 +209,7 @@ public class WeatherActivity extends AppCompatActivity {
             editor.putString("updateTime",suggestion.update.updateTime);
             editor.putString("weatherId",weather.basic.weatherId);
             editor.apply();
+            //调用方法将数据刷新到页面上
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -218,6 +230,7 @@ public class WeatherActivity extends AppCompatActivity {
         loadBingPic();//每次刷新页面同时刷新背景
     }
 
+    //刷新页面数据
     private void showWeatherInfo(Weather weather,AQI aqi,Suggestion suggestion){
         String cityName = weather.basic.cityName;
         String updateTime = weather.update.updateTime;
@@ -237,6 +250,7 @@ public class WeatherActivity extends AppCompatActivity {
         sportText.setText(echoText);
     }
 
+    //封装好的callback接口实现
     private class Callbacks implements Callback{
         @Override
         public void onFailure(Call call, IOException e) {
@@ -257,6 +271,7 @@ public class WeatherActivity extends AppCompatActivity {
         }
     }
 
+    //获取bing每日一图 并刷新到页面中
     private void loadBingPic(){
         String requestBingPic = "http://guolin.tech/api/bing_pic";
         HttpUtil.sendOkHttpRequest(requestBingPic, new Callback() {

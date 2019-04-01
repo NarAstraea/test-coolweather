@@ -2,10 +2,16 @@ package com.coolweather.android.db;
 
 import org.litepal.crud.DataSupport;
 
+//
+// Database Province
+//
 public class Province extends DataSupport {
+    // inner variables
     private int id;
     private String provinceName;
     private int provinceCode;
+
+    // getter and setter
     public int getId(){
         return id;
     }

@@ -4,7 +4,13 @@ package com.coolweather.android.gson;
 
 //import java.util.List;
 
+//
+// Database Weather
+// gson structure for saving internet get-request "Weather message data"
+// this db class is a container for other db classes
+//
 public class Weather {
+    // other database containers
     public String status;
     public Basic basic;
     public Now now;

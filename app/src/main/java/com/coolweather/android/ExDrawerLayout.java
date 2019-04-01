@@ -4,6 +4,9 @@ import android.content.Context;
 import android.support.v4.widget.DrawerLayout;
 import android.util.AttributeSet;
 
+//
+//处理DrawerLayout must be measured with MeasureSpec.EXACTLY.异常重写onMeasure方法
+//
 public class ExDrawerLayout extends DrawerLayout {
 
     public ExDrawerLayout(Context context) {
